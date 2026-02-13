@@ -1,27 +1,22 @@
 import type { Service } from "@/data/services";
 import ServiceCard from "./ServiceCard";
-import { SearchX } from "lucide-react";
 
 interface ServiceGridProps {
   services: Service[];
-  title: string;
 }
 
-const ServiceGrid = ({ services, title }: ServiceGridProps) => {
-  if (services.length === 0) {
-    return (
-      <div className="mx-4 mt-6 text-center py-12">
-        <SearchX className="w-12 h-12 mx-auto text-muted-foreground/50 mb-3" />
-        <p className="text-muted-foreground">কোনো সেবা পাওয়া যায়নি</p>
-      </div>
-    );
-  }
+const ServiceGrid = ({ services }: ServiceGridProps) => {
+  const active = services.filter((s) => s.status === "active");
+  const count = active.length;
 
   return (
-    <section className="mx-4 mt-6">
-      <h2 className="text-base font-bold text-foreground mb-3">{title}</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-        {services.map((service) => (
+    <section className="px-4 mt-6">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-lg font-bold text-foreground">চালু সেবাসমূহ</h2>
+        <span className="text-sm font-semibold text-destructive">{count} টি</span>
+      </div>
+      <div className="grid grid-cols-4 gap-3">
+        {active.map((service) => (
           <ServiceCard key={service.id} service={service} />
         ))}
       </div>

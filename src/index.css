@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
+    --background: 220 15% 96%;
     --foreground: 220 20% 10%;
 
     --card: 0 0% 100%;
@@ -24,32 +24,42 @@
     --muted: 210 20% 96%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 152 60% 52%;
+    --accent: 152 60% 42%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 20% 92%;
+    --border: 214 20% 90%;
     --input: 214 20% 92%;
     --ring: 199 89% 48%;
 
-    --radius: 1.25rem;
+    --radius: 1rem;
 
-    /* Custom tokens */
-    --gradient-header-from: 199 89% 48%;
-    --gradient-header-to: 172 66% 50%;
-    --service-shadow: 0 4px 12px hsla(0, 0%, 0%, 0.05);
-    --pastel-pink: 340 80% 94%;
-    --pastel-green: 152 60% 92%;
-    --pastel-blue: 210 80% 92%;
-    --pastel-orange: 30 90% 92%;
-    --pastel-purple: 270 60% 93%;
-    --pastel-red: 0 80% 93%;
-    --pastel-teal: 180 60% 92%;
-    --pastel-yellow: 45 90% 92%;
-    --stats-gradient-from: 199 89% 48%;
-    --stats-gradient-to: 260 70% 60%;
+    /* Neumorphic shadows */
+    --shadow-neu: 6px 6px 12px hsla(220, 15%, 82%, 0.6), -6px -6px 12px hsla(0, 0%, 100%, 0.8);
+    --shadow-neu-sm: 3px 3px 6px hsla(220, 15%, 82%, 0.5), -3px -3px 6px hsla(0, 0%, 100%, 0.7);
+    --shadow-neu-inset: inset 2px 2px 5px hsla(220, 15%, 82%, 0.5), inset -2px -2px 5px hsla(0, 0%, 100%, 0.7);
+
+    /* Service header colors */
+    --header-red: 0 75% 55%;
+    --header-green: 152 60% 42%;
+    --header-blue: 210 70% 50%;
+    --header-purple: 270 50% 55%;
+    --header-orange: 25 90% 55%;
+    --header-teal: 180 55% 42%;
+    --header-pink: 340 70% 55%;
+
+    /* Pastel backgrounds */
+    --pastel-blue: 210 60% 92%;
+    --pastel-red: 0 70% 93%;
+    --pastel-green: 152 50% 90%;
+    --pastel-purple: 270 45% 92%;
+    --pastel-orange: 25 70% 92%;
+    --pastel-teal: 180 45% 90%;
+    --pastel-pink: 340 60% 93%;
+    --pastel-yellow: 45 70% 90%;
+    --pastel-gray: 220 15% 92%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -64,10 +74,8 @@
   .dark {
     --background: 220 20% 7%;
     --foreground: 210 20% 96%;
-    --card: 220 20% 10%;
+    --card: 220 20% 12%;
     --card-foreground: 210 20% 96%;
-    --popover: 220 20% 10%;
-    --popover-foreground: 210 20% 96%;
     --primary: 199 89% 48%;
     --primary-foreground: 0 0% 100%;
     --secondary: 217 33% 17%;
@@ -95,21 +103,13 @@
 }
 
 @layer utilities {
-  .gradient-header {
-    background: linear-gradient(135deg, hsl(var(--gradient-header-from)), hsl(var(--gradient-header-to)));
+  .shadow-neu {
+    box-shadow: var(--shadow-neu);
   }
-  .gradient-stats {
-    background: linear-gradient(135deg, hsl(var(--stats-gradient-from)), hsl(var(--stats-gradient-to)));
+  .shadow-neu-sm {
+    box-shadow: var(--shadow-neu-sm);
   }
-  .card-shadow {
-    box-shadow: var(--service-shadow);
+  .shadow-neu-inset {
+    box-shadow: var(--shadow-neu-inset);
   }
-  .pastel-pink { background-color: hsl(var(--pastel-pink)); }
-  .pastel-green { background-color: hsl(var(--pastel-green)); }
-  .pastel-blue { background-color: hsl(var(--pastel-blue)); }
-  .pastel-orange { background-color: hsl(var(--pastel-orange)); }
-  .pastel-purple { background-color: hsl(var(--pastel-purple)); }
-  .pastel-red { background-color: hsl(var(--pastel-red)); }
-  .pastel-teal { background-color: hsl(var(--pastel-teal)); }
-  .pastel-yellow { background-color: hsl(var(--pastel-yellow)); }
 }
