@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 import type { Service } from "@/data/services";
 import { services as defaultServices } from "@/data/services";
 
@@ -17,7 +17,6 @@ const AdminContext = createContext<AdminContextType | null>(null);
 
 const ADMIN_USER = "admin";
 const ADMIN_PASS = "ramganj2026";
-const STORAGE_KEY = "ramganj_services";
 const AUTH_KEY = "ramganj_admin_auth";
 
 export const AdminProvider = ({ children }: { children: ReactNode }) => {
@@ -25,11 +24,7 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
     return sessionStorage.getItem(AUTH_KEY) === "true";
   });
 
-  const [serviceList, setServiceList] = useState<Service[]>(() => {
-    // Services with icons can't be fully serialized, so we always use defaults
-    // and overlay status/additions from localStorage
-    return defaultServices;
-  });
+  const [serviceList, setServiceList] = useState<Service[]>(() => defaultServices);
 
   const login = (username: string, password: string): boolean => {
     if (username === ADMIN_USER && password === ADMIN_PASS) {
