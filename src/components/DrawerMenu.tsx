@@ -1,5 +1,6 @@
-import { X, Home, Info, Phone, Settings, Star, HelpCircle } from "lucide-react";
+import { X, Home, Info, Phone, Settings, Star, HelpCircle, ShieldCheck } from "lucide-react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface DrawerMenuProps {
   isOpen: boolean;
@@ -13,9 +14,11 @@ const menuItems = [
   { icon: Phone, label: "যোগাযোগ", href: "#contact" },
   { icon: HelpCircle, label: "সাহায্য", href: "#help" },
   { icon: Settings, label: "সেটিংস", href: "#settings" },
+  { icon: ShieldCheck, label: "এডমিন প্যানেল", href: "/admin" },
 ];
 
 const DrawerMenu = ({ isOpen, onClose }: DrawerMenuProps) => {
+  const navigate = useNavigate();
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -51,15 +54,14 @@ const DrawerMenu = ({ isOpen, onClose }: DrawerMenuProps) => {
         </div>
         <nav className="p-4 space-y-1">
           {menuItems.map((item) => (
-            <a
+            <button
               key={item.label}
-              href={item.href}
-              onClick={onClose}
-              className="flex items-center gap-3 px-4 py-3 rounded-lg text-foreground hover:bg-secondary transition-colors"
+              onClick={() => { onClose(); if (item.href.startsWith("/")) navigate(item.href); }}
+              className="flex items-center gap-3 px-4 py-3 rounded-lg text-foreground hover:bg-secondary transition-colors w-full text-left"
             >
               <item.icon className="w-5 h-5 text-primary" />
               <span className="font-medium">{item.label}</span>
-            </a>
+            </button>
           ))}
         </nav>
         <div className="absolute bottom-6 left-0 right-0 px-6 text-center">
